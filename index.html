@@ -109,21 +109,27 @@
 
     <!-- Lógica de la Aplicación -->
     <script>
-        // Estructura de datos por defecto inicial
+        // Estructura de datos por defecto inicial corregida (comas y formato correctos)
         const datosIniciales = [
             { id: "bloque-1", nombre: "Estrella", colapsado: false, items: [ {id: 1, nombre: "Estrella Galicia 1L", cantidad: 0}, {id: 2, nombre: "Estrella 1906", cantidad: 0} ] },
             { id: "bloque-2", nombre: "Coca-cola", colapsado: false, items: [ {id: 3, nombre: "Coca-Cola Original 2L", cantidad: 0}, {id: 4, nombre: "Coca-Cola Zero", cantidad: 0} ] },
-            { id: "bloque-8", nombre: "Café", colapsado: false, items: [ {id: 15, nombre: "Café en grano 1kg", cantidad: 0} ] },
-            { id: "bloque-9", nombre: "Alcohol y Vino", colapsado: false, items: [ {id: 16, nombre: "Vino Rías Baixas Albariño", cantidad: 0}, {id: 17, nombre: "Vino Tinto Rioja Crianza", cantidad: 0} ] }
             { id: "bloque-3", nombre: "Embutidos", colapsado: false, items: [ {id: 5, nombre: "Jamón Ibérico", cantidad: 0}, {id: 6, nombre: "Lacón curado", cantidad: 0} ] },
             { id: "bloque-4", nombre: "Quesos", colapsado: false, items: [ {id: 7, nombre: "Queso Tetilla", cantidad: 0}, {id: 8, nombre: "Queso Arzúa-Ulloa", cantidad: 0} ] },
             { id: "bloque-5", nombre: "Fruta", colapsado: false, items: [ {id: 9, nombre: "Limones", cantidad: 0}, {id: 10, nombre: "Naranjas zumo", cantidad: 0} ] },
             { id: "bloque-6", nombre: "Helados", colapsado: false, items: [ {id: 11, nombre: "Helado Vainilla", cantidad: 0}, {id: 12, nombre: "Helado Chocolate", cantidad: 0} ] },
             { id: "bloque-7", nombre: "Limpieza", colapsado: false, items: [ {id: 13, nombre: "Lejía industrial", cantidad: 0}, {id: 14, nombre: "Papel higiénico", cantidad: 0} ] },
-            
+            { id: "bloque-8", nombre: "Café", colapsado: false, items: [ {id: 15, nombre: "Café en grano 1kg", cantidad: 0} ] },
+            { id: "bloque-9", nombre: "Alcohol y Vino", colapsado: false, items: [ {id: 16, nombre: "Vino Rías Baixas Albariño", cantidad: 0}, {id: 17, nombre: "Vino Tinto Rioja Crianza", cantidad: 0} ] }
         ];
 
-        let state = JSON.parse(localStorage.getItem('samain_pedidos_state')) || datosIniciales;
+        let state;
+        try {
+            const savedState = localStorage.getItem('samain_pedidos_state');
+            state = savedState ? JSON.parse(savedState) : datosIniciales;
+        } catch (e) {
+            // Si el localStorage está corrupto por pruebas anteriores, cargamos los datos por defecto
+            state = datosIniciales;
+        }
 
         // Variables de control de modales
         let editandoBloqueId = null;
