@@ -1,0 +1,15 @@
+{
+  "name": "Jamonería Samaín - Pedidos",
+  "short_name": "Samaín",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e293b",
+  "theme_color": "#1e293b",
+  "icons": [
+    {
+      "src": "icono.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
