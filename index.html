@@ -109,34 +109,106 @@
 
     <!-- Lógica de la Aplicación -->
     <script>
-        // Estructura de datos por defecto inicial corregida (comas y formato correctos)
+        // Nueva estructura por defecto con soporte de Subloques y los elementos pedidos
         const datosIniciales = [
-            { id: "bloque-1", nombre: "Estrella", colapsado: false, items: [ {id: 1, nombre: "Estrella Galicia 1L", cantidad: 0}, {id: 2, nombre: "Estrella 1906", cantidad: 0} ] },
+            {
+                id: "bloque-1",
+                nombre: "Estrella",
+                colapsado: false,
+                subloques: [
+                    {
+                        id: "sub-1-1",
+                        nombre: "Tanque",
+                        items: [ { id: 101, nombre: "Estrella", cantidad: 0 } ]
+                    },
+                    {
+                        id: "sub-1-2",
+                        nombre: "Barriles",
+                        items: [
+                            { id: 102, nombre: "0,0 Tostada", cantidad: 0 },
+                            { id: 103, nombre: "Radler", cantidad: 0 },
+                            { id: 104, nombre: "1906", cantidad: 0 },
+                            { id: 105, nombre: "Estrella", cantidad: 0 },
+                            { id: 106, nombre: "Tinto de Verano", cantidad: 0 }
+                        ]
+                    },
+                    {
+                        id: "sub-1-3",
+                        nombre: "Cajas",
+                        items: [
+                            { id: 107, nombre: "0,0 Rubia", cantidad: 0 },
+                            { id: 108, nombre: "Red Vintage", cantidad: 0 },
+                            { id: 109, nombre: "Reposada", cantidad: 0 },
+                            { id: 110, nombre: "Sin Gluten", cantidad: 0 }
+                        ]
+                    },
+                    {
+                        id: "sub-1-4",
+                        nombre: "Aguas",
+                        items: [
+                            { id: 111, nombre: "Magma Aluminio con gas", cantidad: 0 },
+                            { id: 112, nombre: "Agua", cantidad: 0 }
+                        ]
+                    }
+                ]
+            },
             { id: "bloque-2", nombre: "Coca-cola", colapsado: false, items: [ {id: 3, nombre: "Coca-Cola Original 2L", cantidad: 0}, {id: 4, nombre: "Coca-Cola Zero", cantidad: 0} ] },
-            { id: "bloque-3", nombre: "Embutidos", colapsado: false, items: [ {id: 5, nombre: "Jamón Ibérico", cantidad: 0}, {id: 6, nombre: "Lacón curado", cantidad: 0} ] },
+            { 
+                id: "bloque-3", 
+                nombre: "Embutidos", 
+                colapsado: false, 
+                items: [ 
+                    {id: 5, nombre: "Jamón", cantidad: 0}, 
+                    {id: 6, nombre: "Lomo", cantidad: 0},
+                    {id: 19, nombre: "Salchichón", cantidad: 0},
+                    {id: 20, nombre: "Chorizo", cantidad: 0},
+                    {id: 21, nombre: "Cecina", cantidad: 0},
+                    {id: 22, nombre: "Chicharrones", cantidad: 0}
+                ] 
+            },
             { id: "bloque-4", nombre: "Quesos", colapsado: false, items: [ {id: 7, nombre: "Queso Tetilla", cantidad: 0}, {id: 8, nombre: "Queso Arzúa-Ulloa", cantidad: 0} ] },
-            { id: "bloque-5", nombre: "Fruta", colapsado: false, items: [ {id: 9, nombre: "Limones", cantidad: 0}, {id: 10, nombre: "Naranjas zumo", cantidad: 0} ] },
+            { id: "bloque-5", nombre: "Fruta", colapsado: false, items: [ {id: 9, nombre: "Tomates", cantidad: 0}, {id: 10, nombre: "Uva blanca", cantidad: 0}, {id: 23, nombre: "Uva roja", cantidad: 0} ] },
             { id: "bloque-6", nombre: "Helados", colapsado: false, items: [ {id: 11, nombre: "Helado Vainilla", cantidad: 0}, {id: 12, nombre: "Helado Chocolate", cantidad: 0} ] },
             { id: "bloque-7", nombre: "Limpieza", colapsado: false, items: [ {id: 13, nombre: "Lejía industrial", cantidad: 0}, {id: 14, nombre: "Papel higiénico", cantidad: 0} ] },
             { id: "bloque-8", nombre: "Café", colapsado: false, items: [ {id: 15, nombre: "Café en grano 1kg", cantidad: 0} ] },
-            { id: "bloque-9", nombre: "Alcohol y Vino", colapsado: false, items: [ {id: 16, nombre: "Vino Rías Baixas Albariño", cantidad: 0}, {id: 17, nombre: "Vino Tinto Rioja Crianza", cantidad: 0} ] }
+            {
+                id: "bloque-9",
+                nombre: "Alcohol y Vino",
+                colapsado: false,
+                subloques: [
+                    {
+                        id: "sub-9-1",
+                        nombre: "Vinos",
+                        items: [
+                            { id: 24, nombre: "Vino Rías Baixas Albariño", cantidad: 0 },
+                            { id: 25, nombre: "Vino Tinto Rioja Crianza", cantidad: 0 }
+                        ]
+                    },
+                    {
+                        id: "sub-9-2",
+                        nombre: "Alcohol",
+                        items: [
+                            { id: 26, nombre: "Ron", cantidad: 0 },
+                            { id: 27, nombre: "Ginebra", cantidad: 0 }
+                        ]
+                    }
+                ]
+            }
         ];
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state');
+            const savedState = localStorage.getItem('samain_pedidos_state_v2');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
-            // Si el localStorage está corrupto por pruebas anteriores, cargamos los datos por defecto
             state = datosIniciales;
         }
 
-        // Variables de control de modales
         let editandoBloqueId = null;
-        let editandoArticuloContext = null; // { bloqueId, articuloId }
+        let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v2', JSON.stringify(state));
             render();
         }
 
@@ -145,12 +217,18 @@
             container.innerHTML = '';
 
             state.forEach(bloque => {
-                const totalItemsActivos = bloque.items.filter(i => i.cantidad > 0).length;
+                // Contar total items activos (soporta tanto bloques con items directos como bloques con subloques)
+                let totalItemsActivos = 0;
+                if (bloque.subloques) {
+                    bloque.subloques.forEach(sub => sub.items.forEach(i => { if(i.cantidad > 0) totalItemsActivos++; }));
+                } else if (bloque.items) {
+                    totalItemsActivos = bloque.items.filter(i => i.cantidad > 0).length;
+                }
                 
                 const card = document.createElement('div');
                 card.className = 'card-bg card-border rounded-2xl shadow-lg overflow-hidden transition-all duration-200';
                 
-                // Cabecera del Bloque
+                // Cabecera del Bloque Principal
                 let html = `
                     <div class="px-4 py-3.5 bg-[#2A3655]/60 flex items-center justify-between border-b border-white/5">
                         <div class="flex items-center space-x-2 flex-1 min-w-0 mr-2">
@@ -161,63 +239,52 @@
                             ${totalItemsActivos > 0 ? `<span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">${totalItemsActivos}</span>` : ''}
                         </div>
                         <div class="flex items-center space-x-1 text-gray-300">
-                            <button onclick="abrirModalNuevoArticulo('${bloque.id}')" class="p-1.5 hover:text-amber-300 rounded-lg transition" title="Añadir artículo">
-                                <i class="fa-solid fa-plus text-xs"></i>
-                            </button>
-                            <button onclick="abrirModalEditarBloque('${bloque.id}')" class="p-1.5 hover:text-indigo-300 rounded-lg transition" title="Editar bloque">
-                                <i class="fa-solid fa-pen text-xs"></i>
-                            </button>
-                            <button onclick="exportarBloquePDF('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Exportar Bloque a PDF">
-                                <i class="fa-solid fa-file-pdf text-xs"></i>
-                            </button>
-                            <button onclick="enviarBloqueWhatsApp('${bloque.id}')" class="p-1.5 hover:text-emerald-400 rounded-lg transition" title="Enviar Bloque por WhatsApp">
-                                <i class="fa-brands fa-whatsapp text-sm"></i>
-                            </button>
-                            <button onclick="borrarBloque('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Borrar bloque">
-                                <i class="fa-solid fa-trash-can text-xs"></i>
-                            </button>
+                            ${!bloque.subloques ? `<button onclick="abrirModalNuevoArticulo('${bloque.id}', null)" class="p-1.5 hover:text-amber-300 rounded-lg transition" title="Añadir artículo"><i class="fa-solid fa-plus text-xs"></i></button>` : ''}
+                            <button onclick="abrirModalEditarBloque('${bloque.id}')" class="p-1.5 hover:text-indigo-300 rounded-lg transition" title="Editar bloque"><i class="fa-solid fa-pen text-xs"></i></button>
+                            <button onclick="exportarBloquePDF('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Exportar Bloque a PDF"><i class="fa-solid fa-file-pdf text-xs"></i></button>
+                            <button onclick="enviarBloqueWhatsApp('${bloque.id}')" class="p-1.5 hover:text-emerald-400 rounded-lg transition" title="Enviar Bloque por WhatsApp"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+                            <button onclick="borrarBloque('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Borrar bloque"><i class="fa-solid fa-trash-can text-xs"></i></button>
                         </div>
                     </div>
                 `;
 
-                // Contenido de Artículos (si no está colapsado)
+                // Contenido (si no está colapsado)
                 if (!bloque.colapsado) {
-                    html += `<div class="p-3 space-y-2.5">`;
-                    if (bloque.items.length === 0) {
-                        html += `<p class="text-xs text-gray-400 text-center py-2 italic">No hay artículos en este bloque.</p>`;
-                    } else {
-                        bloque.items.forEach(item => {
+                    html += `<div class="p-3 space-y-3">`;
+                    
+                    // Si el bloque tiene subloques
+                    if (bloque.subloques) {
+                        bloque.subloques.forEach(subloque => {
                             html += `
-                                <div class="flex items-center justify-between bg-[#1B2238]/60 p-2.5 rounded-xl border border-white/5">
-                                    <div class="flex-1 min-w-0 pr-2">
-                                        <span class="text-xs font-medium text-gray-200 block truncate">${item.nombre}</span>
+                                <div class="bg-[#1B2238]/40 border border-white/5 rounded-xl p-2.5 space-y-2">
+                                    <div class="flex items-center justify-between border-b border-white/5 pb-1.5">
+                                        <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">${subloque.nombre}</span>
+                                        <button onclick="abrirModalNuevoArticulo('${bloque.id}', '${subloque.id}')" class="text-gray-400 hover:text-amber-300 text-xs px-1.5 py-0.5 rounded transition" title="Añadir a ${subloque.nombre}">
+                                            <i class="fa-solid fa-plus text-[10px]"></i> Añadir
+                                        </button>
                                     </div>
-                                    <div class="flex items-center space-x-2 shrink-0">
-                                        <!-- Controles numéricos -->
-                                        <div class="flex items-center bg-[#242E4B] border border-gray-700/80 rounded-xl overflow-hidden shadow-inner">
-                                            <button onclick="cambiarCantidad('${bloque.id}', ${item.id}, -1)" class="w-8 h-8 bg-gray-800 hover:bg-gray-700 text-gray-300 flex items-center justify-center transition active:bg-gray-600">
-                                                <i class="fa-solid fa-minus text-[10px]"></i>
-                                            </button>
-                                            <input type="number" min="0" value="${item.cantidad}" 
-                                                onchange="actualizarCantidadDirecta('${bloque.id}', ${item.id}, this.value)"
-                                                class="w-10 text-center bg-transparent text-white text-xs font-bold focus:outline-none">
-                                            <button onclick="cambiarCantidad('${bloque.id}', ${item.id}, 1)" class="w-8 h-8 bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition active:bg-indigo-700">
-                                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                            </button>
-                                        </div>
-                                        <!-- Opciones de Artículo -->
-                                        <div class="flex items-center space-x-1">
-                                            <button onclick="abrirModalEditarArticulo('${bloque.id}', ${item.id}, '${item.nombre}')" class="text-gray-400 hover:text-indigo-300 p-1 transition" title="Editar artículo">
-                                                <i class="fa-solid fa-pen text-[10px]"></i>
-                                            </button>
-                                            <button onclick="borrarArticulo('${bloque.id}', ${item.id})" class="text-gray-400 hover:text-red-400 p-1 transition" title="Eliminar artículo">
-                                                <i class="fa-solid fa-xmark text-xs"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <div class="space-y-2">
                             `;
+                            
+                            if (subloque.items.length === 0) {
+                                html += `<p class="text-[11px] text-gray-500 italic py-1">Vacío</p>`;
+                            } else {
+                                subloque.items.forEach(item => {
+                                    html += renderItemHTML(bloque.id, item, subloque.id);
+                                });
+                            }
+                            html += `</div></div>`;
                         });
+                    } 
+                    // Si el bloque tiene items directos
+                    else if (bloque.items) {
+                        if (bloque.items.length === 0) {
+                            html += `<p class="text-xs text-gray-400 text-center py-2 italic">No hay artículos en este bloque.</p>`;
+                        } else {
+                            bloque.items.forEach(item => {
+                                html += renderItemHTML(bloque.id, item, null);
+                            });
+                        }
                     }
                     html += `</div>`;
                 }
@@ -227,21 +294,62 @@
             });
         }
 
+        function renderItemHTML(bloqueId, item, subloqueId) {
+            return `
+                <div class="flex items-center justify-between bg-[#1B2238]/70 p-2.5 rounded-xl border border-white/5">
+                    <div class="flex-1 min-w-0 pr-2">
+                        <span class="text-xs font-medium text-gray-200 block truncate">${item.nombre}</span>
+                    </div>
+                    <div class="flex items-center space-x-2 shrink-0">
+                        <div class="flex items-center bg-[#242E4B] border border-gray-700/80 rounded-xl overflow-hidden shadow-inner">
+                            <button onclick="cambiarCantidad('${bloqueId}', ${item.id}, -1, '${subloqueId || ''}')" class="w-8 h-8 bg-gray-800 hover:bg-gray-700 text-gray-300 flex items-center justify-center transition active:bg-gray-600">
+                                <i class="fa-solid fa-minus text-[10px]"></i>
+                            </button>
+                            <input type="number" min="0" value="${item.cantidad}" 
+                                onchange="actualizarCantidadDirecta('${bloqueId}', ${item.id}, this.value, '${subloqueId || ''}')"
+                                class="w-10 text-center bg-transparent text-white text-xs font-bold focus:outline-none">
+                            <button onclick="cambiarCantidad('${bloqueId}', ${item.id}, 1, '${subloqueId || ''}')" class="w-8 h-8 bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition active:bg-indigo-700">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button onclick="abrirModalEditarArticulo('${bloqueId}', ${item.id}, '${item.nombre}', '${subloqueId || ''}')" class="text-gray-400 hover:text-indigo-300 p-1 transition" title="Editar artículo">
+                                <i class="fa-solid fa-pen text-[10px]"></i>
+                            </button>
+                            <button onclick="borrarArticulo('${bloqueId}', ${item.id}, '${subloqueId || ''}')" class="text-gray-400 hover:text-red-400 p-1 transition" title="Eliminar artículo">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         // Acciones sobre Cantidades
-        function cambiarCantidad(bloqueId, itemId, delta) {
+        function buscarItemEnBloque(bloque, itemId, subloqueId) {
+            if (subloqueId) {
+                const sub = bloque.subloques.find(s => s.id === subloqueId);
+                return sub ? sub.items.find(i => i.id === itemId) : null;
+            } else if (bloque.items) {
+                return bloque.items.find(i => i.id === itemId);
+            }
+            return null;
+        }
+
+        function cambiarCantidad(bloqueId, itemId, delta, subloqueId) {
             const bloque = state.find(b => b.id === bloqueId);
             if (!bloque) return;
-            const item = bloque.items.find(i => i.id === itemId);
+            const item = buscarItemEnBloque(bloque, itemId, subloqueId);
             if (!item) return;
 
             item.cantidad = Math.max(0, item.cantidad + delta);
             guardarEstado();
         }
 
-        function actualizarCantidadDirecta(bloqueId, itemId, valor) {
+        function actualizarCantidadDirecta(bloqueId, itemId, valor, subloqueId) {
             const bloque = state.find(b => b.id === bloqueId);
             if (!bloque) return;
-            const item = bloque.items.find(i => i.id === itemId);
+            const item = buscarItemEnBloque(bloque, itemId, subloqueId);
             if (!item) return;
 
             const num = parseInt(valor);
@@ -259,12 +367,18 @@
 
         function reiniciarCantidades() {
             if (confirm("¿Estás seguro de poner a cero todas las cantidades?")) {
-                state.forEach(b => b.items.forEach(i => i.cantidad = 0));
+                state.forEach(b => {
+                    if (b.subloques) {
+                        b.subloques.forEach(s => s.items.forEach(i => i.cantidad = 0));
+                    } else if (b.items) {
+                        b.items.forEach(i => i.cantidad = 0);
+                    }
+                });
                 guardarEstado();
             }
         }
 
-        // Modales y Gestión de Bloques/Artículos
+        // Modales de Bloques y Artículos
         function abrirModalNuevoBloque() {
             editandoBloqueId = null;
             document.getElementById('modal-bloque-titulo').innerText = "Nuevo Bloque";
@@ -302,22 +416,22 @@
         }
 
         function borrarBloque(bloqueId) {
-            if (confirm("¿Eliminar este bloque y todos sus artículos?")) {
+            if (confirm("¿Eliminar este bloque y todos sus elementos?")) {
                 state = state.filter(b => b.id !== bloqueId);
                 guardarEstado();
             }
         }
 
-        function abrirModalNuevoArticulo(bloqueId) {
-            editandoArticuloContext = { bloqueId: bloqueId, articuloId: null };
+        function abrirModalNuevoArticulo(bloqueId, subloqueId) {
+            editandoArticuloContext = { bloqueId: bloqueId, subloqueId: subloqueId, articuloId: null };
             document.getElementById('modal-articulo-titulo').innerText = "Añadir Artículo";
             document.getElementById('input-nombre-articulo').value = "";
             document.getElementById('modal-articulo').classList.remove('hidden');
             setTimeout(() => document.getElementById('input-nombre-articulo').focus(), 50);
         }
 
-        function abrirModalEditarArticulo(bloqueId, articuloId, nombreActual) {
-            editandoArticuloContext = { bloqueId: bloqueId, articuloId: articuloId };
+        function abrirModalEditarArticulo(bloqueId, articuloId, nombreActual, subloqueId) {
+            editandoArticuloContext = { bloqueId: bloqueId, subloqueId: subloqueId || null, articuloId: articuloId };
             document.getElementById('modal-articulo-titulo').innerText = "Editar Artículo";
             document.getElementById('input-nombre-articulo').value = nombreActual;
             document.getElementById('modal-articulo').classList.remove('hidden');
@@ -335,25 +449,42 @@
             const bloque = state.find(b => b.id === editandoArticuloContext.bloqueId);
             if (!bloque) return;
 
+            let listaItemsTarget = null;
+            if (editandoArticuloContext.subloqueId) {
+                const sub = bloque.subloques.find(s => s.id === editandoArticuloContext.subloqueId);
+                if (sub) listaItemsTarget = sub.items;
+            } else {
+                if (!bloque.items) bloque.items = [];
+                listaItemsTarget = bloque.items;
+            }
+
+            if (!listaItemsTarget) return;
+
             if (editandoArticuloContext.articuloId !== null) {
-                const item = bloque.items.find(i => i.id === editandoArticuloContext.articuloId);
+                const item = listaItemsTarget.find(i => i.id === editandoArticuloContext.articuloId);
                 if (item) item.nombre = nombre;
             } else {
                 const nuevoItem = { id: Date.now(), nombre: nombre, cantidad: 0 };
-                bloque.items.push(nuevoItem);
+                listaItemsTarget.push(nuevoItem);
             }
             cerrarModalArticulo();
             guardarEstado();
         }
 
-        function borrarArticulo(bloqueId, articuloId) {
+        function borrarArticulo(bloqueId, articuloId, subloqueId) {
             const bloque = state.find(b => b.id === bloqueId);
             if (!bloque) return;
-            bloque.items = bloque.items.filter(i => i.id !== articuloId);
+
+            if (subloqueId) {
+                const sub = bloque.subloques.find(s => s.id === subloqueId);
+                if (sub) sub.items = sub.items.filter(i => i.id !== articuloId);
+            } else if (bloque.items) {
+                bloque.items = bloque.items.filter(i => i.id !== articuloId);
+            }
             guardarEstado();
         }
 
-        // Sistemas de Exportación y WhatsApp
+        // Exportar WhatsApp y PDF
         function generarTextoPedido(filtrarBloqueId = null) {
             const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
             let texto = `📋 *PEDIDO SAMAIN - LA CORMELANA*\n📅 Fecha: ${fecha}\n\n`;
@@ -362,14 +493,33 @@
             const bloquesAProcesar = filtrarBloqueId ? state.filter(b => b.id === filtrarBloqueId) : state;
 
             bloquesAProcesar.forEach(bloque => {
-                const activos = bloque.items.filter(i => i.cantidad > 0);
-                if (activos.length > 0) {
-                    hayArticulos = true;
-                    texto += `▪️ *${bloque.nombre.toUpperCase()}*\n`;
-                    activos.forEach(item => {
-                        texto += `   - ${item.nombre}: *${item.cantidad}*\n`;
+                let bloqueTieneActivos = false;
+                let textoBloque = `▪️ *${bloque.nombre.toUpperCase()}*\n`;
+
+                if (bloque.subloques) {
+                    bloque.subloques.forEach(sub => {
+                        const activosSub = sub.items.filter(i => i.cantidad > 0);
+                        if (activosSub.length > 0) {
+                            bloqueTieneActivos = true;
+                            textoBloque += `   _📦 ${sub.name || sub.nombre}_\n`;
+                            activosSub.forEach(item => {
+                                textoBloque += `     - ${item.nombre}: *${item.cantidad}*\n`;
+                            });
+                        }
                     });
-                    texto += `\n`;
+                } else if (bloque.items) {
+                    const activos = bloque.items.filter(i => i.cantidad > 0);
+                    if (activos.length > 0) {
+                        bloqueTieneActivos = true;
+                        activos.forEach(item => {
+                            textoBloque += `   - ${item.nombre}: *${item.cantidad}*\n`;
+                        });
+                    }
+                }
+
+                if (bloqueTieneActivos) {
+                    hayArticulos = true;
+                    texto += textoBloque + `\n`;
                 }
             });
 
@@ -380,24 +530,17 @@
         function enviarTodoWhatsApp() {
             const texto = generarTextoPedido();
             if (!texto) return alert("No hay ningún artículo con cantidad mayor a 0 para enviar.");
-            const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
         function enviarBloqueWhatsApp(bloqueId) {
             const texto = generarTextoPedido(bloqueId);
             if (!texto) return alert("Este bloque no tiene artículos seleccionados (> 0).");
-            const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
-        function exportarTodoPDF() {
-            exportarPDF(null);
-        }
-
-        function exportarBloquePDF(bloqueId) {
-            exportarPDF(bloqueId);
-        }
+        function exportarTodoPDF() { exportarPDF(null); }
+        function exportarBloquePDF(bloqueId) { exportarPDF(bloqueId); }
 
         function exportarPDF(filtrarBloqueId = null) {
             const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -413,7 +556,8 @@
                         .fecha { font-size: 12px; color: #555; margin-bottom: 20px; }
                         .bloque { margin-bottom: 15px; }
                         .bloque-title { font-weight: bold; background: #f0f0f0; padding: 6px 10px; font-size: 14px; border-radius: 4px; }
-                        ul { margin: 5px 0 15px 20px; padding: 0; list-style-type: disc; }
+                        .sub-title { font-weight: bold; font-size: 12px; margin: 6px 0 2px 10px; color: #444; }
+                        ul { margin: 2px 0 10px 25px; padding: 0; list-style-type: disc; }
                         li { font-size: 13px; margin-bottom: 3px; }
                     </style>
                 </head>
@@ -424,18 +568,37 @@
 
             let hayContenido = false;
             bloquesAProcesar.forEach(bloque => {
-                const activos = bloque.items.filter(i => i.cantidad > 0);
-                if (activos.length > 0) {
-                    hayContenido = true;
-                    contenidoHTML += `
-                        <div class="bloque">
-                            <div class="bloque-title">${bloque.nombre}</div>
-                            <ul>
-                    `;
-                    activos.forEach(item => {
-                        contenidoHTML += `<li>${item.nombre}: <strong>${item.cantidad} unidades</strong></li>`;
+                let bloqueTieneContenido = false;
+                let htmlBloque = `<div class="bloque"><div class="bloque-title">${bloque.nombre}</div>`;
+
+                if (bloque.subloques) {
+                    bloque.subloques.forEach(sub => {
+                        const activosSub = sub.items.filter(i => i.cantidad > 0);
+                        if (activosSub.length > 0) {
+                            bloqueTieneContenido = true;
+                            htmlBloque += `<div class="sub-title">${sub.nombre}</div><ul>`;
+                            activosSub.forEach(item => {
+                                htmlBloque += `<li>${item.nombre}: <strong>${item.cantidad} unidades</strong></li>`;
+                            });
+                            htmlBloque += `</ul>`;
+                        }
                     });
-                    contenidoHTML += `</ul></div>`;
+                } else if (bloque.items) {
+                    const activos = bloque.items.filter(i => i.cantidad > 0);
+                    if (activos.length > 0) {
+                        bloqueTieneContenido = true;
+                        htmlBloque += `<ul>`;
+                        activos.forEach(item => {
+                            htmlBloque += `<li>${item.nombre}: <strong>${item.cantidad} unidades</strong></li>`;
+                        });
+                        htmlBloque += `</ul>`;
+                    }
+                }
+
+                htmlBloque += `</div>`;
+                if (bloqueTieneContenido) {
+                    hayContenido = true;
+                    contenidoHTML += htmlBloque;
                 }
             });
 
@@ -444,17 +607,13 @@
             }
 
             contenidoHTML += `</body></html>`;
-
             const ventanaPDF = window.open('', '_blank');
             ventanaPDF.document.write(contenidoHTML);
             ventanaPDF.document.close();
             ventanaPDF.focus();
-            setTimeout(() => {
-                ventanaPDF.print();
-            }, 300);
+            setTimeout(() => { ventanaPDF.print(); }, 300);
         }
 
-        // Inicializar renderizado al cargar
         render();
     </script>
 </body>
