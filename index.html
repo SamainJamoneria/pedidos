@@ -109,7 +109,6 @@
 
     <!-- Lógica de la Aplicación -->
     <script>
-        // Nueva estructura por defecto con soporte de Subloques y los elementos pedidos
         const datosIniciales = [
             {
                 id: "bloque-1",
@@ -126,9 +125,9 @@
                         nombre: "Barriles",
                         items: [
                             { id: 102, nombre: "0,0 Tostada", cantidad: 0 },
-                            { id: 103, nombre: "Radler", cantidad: 0 },
-                            { id: 104, nombre: "1906", cantidad: 0 },
-                            { id: 105, nombre: "Estrella", cantidad: 0 },
+                            { id: 103, nombre: "1906", cantidad: 0 },
+                            { id: 104, nombre: "Estrella", cantidad: 0 },
+                            { id: 105, nombre: "Radler", cantidad: 0 },
                             { id: 106, nombre: "Tinto de Verano", cantidad: 0 }
                         ]
                     },
@@ -146,29 +145,65 @@
                         id: "sub-1-4",
                         nombre: "Aguas",
                         items: [
-                            { id: 111, nombre: "Magma Aluminio con gas", cantidad: 0 },
-                            { id: 112, nombre: "Agua", cantidad: 0 }
+                            { id: 111, nombre: "Agua", cantidad: 0 },
+                            { id: 112, nombre: "Magma Aluminio con gas", cantidad: 0 }
                         ]
                     }
                 ]
             },
-            { id: "bloque-2", nombre: "Coca-cola", colapsado: false, items: [ {id: 3, nombre: "Coca-Cola Original 2L", cantidad: 0}, {id: 4, nombre: "Coca-Cola Zero", cantidad: 0} ] },
+            {
+                id: "bloque-2",
+                nombre: "Coca-cola",
+                colapsado: false,
+                subloques: [
+                    {
+                        id: "sub-2-1",
+                        nombre: "REFRESCO PEQUEÑO",
+                        items: [
+                            { id: 201, nombre: "Coca-Cola", cantidad: 0 },
+                            { id: 202, nombre: "Coca-Cola Zero", cantidad: 0 }
+                        ]
+                    },
+                    {
+                        id: "sub-2-2",
+                        nombre: "REFRESCO GRANDE",
+                        items: [
+                            { id: 203, nombre: "Acuarius Limón", cantidad: 0 },
+                            { id: 204, nombre: "Acuarios Naranja", cantidad: 0 },
+                            { id: 205, nombre: "Biter", cantidad: 0 },
+                            { id: 206, nombre: "Cacaolat", cantidad: 0 },
+                            { id: 207, nombre: "Coca-cola", cantidad: 0 },
+                            { id: 208, nombre: "Coca-cola Zero", cantidad: 0 },
+                            { id: 209, nombre: "Coca-cola Zero Zero", cantidad: 0 },
+                            { id: 210, nombre: "Fanta limón", cantidad: 0 },
+                            { id: 211, nombre: "Fanta naranja", cantidad: 0 },
+                            { id: 212, nombre: "Nestea", cantidad: 0 },
+                            { id: 213, nombre: "Nestea de maracuyá", cantidad: 0 }
+                        ]
+                    },
+                    {
+                        id: "sub-2-3",
+                        nombre: "TÓNICAS",
+                        items: []
+                    }
+                ]
+            },
             { 
                 id: "bloque-3", 
                 nombre: "Embutidos", 
                 colapsado: false, 
                 items: [ 
-                    {id: 5, nombre: "Jamón", cantidad: 0}, 
-                    {id: 6, nombre: "Lomo", cantidad: 0},
-                    {id: 19, nombre: "Salchichón", cantidad: 0},
-                    {id: 20, nombre: "Chorizo", cantidad: 0},
-                    {id: 21, nombre: "Cecina", cantidad: 0},
-                    {id: 22, nombre: "Chicharrones", cantidad: 0}
+                    {id: 5, nombre: "Cecina", cantidad: 0},
+                    {id: 6, nombre: "Chicharrones", cantidad: 0},
+                    {id: 19, nombre: "Chorizo", cantidad: 0},
+                    {id: 20, nombre: "Jamón", cantidad: 0}, 
+                    {id: 21, nombre: "Lomo", cantidad: 0},
+                    {id: 22, nombre: "Salchichón", cantidad: 0}
                 ] 
             },
-            { id: "bloque-4", nombre: "Quesos", colapsado: false, items: [ {id: 7, nombre: "Queso Tetilla", cantidad: 0}, {id: 8, nombre: "Queso Arzúa-Ulloa", cantidad: 0} ] },
+            { id: "bloque-4", nombre: "Quesos", colapsado: false, items: [ {id: 7, nombre: "Queso Arzúa-Ulloa", cantidad: 0}, {id: 8, nombre: "Queso Tetilla", cantidad: 0} ] },
             { id: "bloque-5", nombre: "Fruta", colapsado: false, items: [ {id: 9, nombre: "Tomates", cantidad: 0}, {id: 10, nombre: "Uva blanca", cantidad: 0}, {id: 23, nombre: "Uva roja", cantidad: 0} ] },
-            { id: "bloque-6", nombre: "Helados", colapsado: false, items: [ {id: 11, nombre: "Helado Vainilla", cantidad: 0}, {id: 12, nombre: "Helado Chocolate", cantidad: 0} ] },
+            { id: "bloque-6", nombre: "Helados", colapsado: false, items: [ {id: 11, nombre: "Helado Chocolate", cantidad: 0}, {id: 12, nombre: "Helado Vainilla", cantidad: 0} ] },
             { id: "bloque-7", nombre: "Limpieza", colapsado: false, items: [ {id: 13, nombre: "Lejía industrial", cantidad: 0}, {id: 14, nombre: "Papel higiénico", cantidad: 0} ] },
             { id: "bloque-8", nombre: "Café", colapsado: false, items: [ {id: 15, nombre: "Café en grano 1kg", cantidad: 0} ] },
             {
@@ -188,8 +223,8 @@
                         id: "sub-9-2",
                         nombre: "Alcohol",
                         items: [
-                            { id: 26, nombre: "Ron", cantidad: 0 },
-                            { id: 27, nombre: "Ginebra", cantidad: 0 }
+                            { id: 26, nombre: "Ginebra", cantidad: 0 },
+                            { id: 27, nombre: "Ron", cantidad: 0 }
                         ]
                     }
                 ]
@@ -198,7 +233,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v2');
+            const savedState = localStorage.getItem('samain_pedidos_state_v3');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -208,16 +243,28 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v2', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v3', JSON.stringify(state));
             render();
         }
 
+        function ordenarListas() {
+            state.forEach(bloque => {
+                if (bloque.subloques) {
+                    bloque.subloques.forEach(sub => {
+                        sub.items.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'accent' }));
+                    });
+                } else if (bloque.items) {
+                    bloque.items.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'accent' }));
+                }
+            });
+        }
+
         function render() {
+            ordenarListas();
             const container = document.getElementById('app-container');
             container.innerHTML = '';
 
             state.forEach(bloque => {
-                // Contar total items activos (soporta tanto bloques con items directos como bloques con subloques)
                 let totalItemsActivos = 0;
                 if (bloque.subloques) {
                     bloque.subloques.forEach(sub => sub.items.forEach(i => { if(i.cantidad > 0) totalItemsActivos++; }));
@@ -228,7 +275,6 @@
                 const card = document.createElement('div');
                 card.className = 'card-bg card-border rounded-2xl shadow-lg overflow-hidden transition-all duration-200';
                 
-                // Cabecera del Bloque Principal
                 let html = `
                     <div class="px-4 py-3.5 bg-[#2A3655]/60 flex items-center justify-between border-b border-white/5">
                         <div class="flex items-center space-x-2 flex-1 min-w-0 mr-2">
@@ -248,11 +294,9 @@
                     </div>
                 `;
 
-                // Contenido (si no está colapsado)
                 if (!bloque.colapsado) {
                     html += `<div class="p-3 space-y-3">`;
                     
-                    // Si el bloque tiene subloques
                     if (bloque.subloques) {
                         bloque.subloques.forEach(subloque => {
                             html += `
@@ -275,9 +319,7 @@
                             }
                             html += `</div></div>`;
                         });
-                    } 
-                    // Si el bloque tiene items directos
-                    else if (bloque.items) {
+                    } else if (bloque.items) {
                         if (bloque.items.length === 0) {
                             html += `<p class="text-xs text-gray-400 text-center py-2 italic">No hay artículos en este bloque.</p>`;
                         } else {
@@ -325,7 +367,6 @@
             `;
         }
 
-        // Acciones sobre Cantidades
         function buscarItemEnBloque(bloque, itemId, subloqueId) {
             if (subloqueId) {
                 const sub = bloque.subloques.find(s => s.id === subloqueId);
@@ -378,7 +419,6 @@
             }
         }
 
-        // Modales de Bloques y Artículos
         function abrirModalNuevoBloque() {
             editandoBloqueId = null;
             document.getElementById('modal-bloque-titulo').innerText = "Nuevo Bloque";
@@ -484,7 +524,6 @@
             guardarEstado();
         }
 
-        // Exportar WhatsApp y PDF
         function generarTextoPedido(filtrarBloqueId = null) {
             const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
             let texto = `📋 *PEDIDO SAMAIN - LA CORMELANA*\n📅 Fecha: ${fecha}\n\n`;
@@ -501,7 +540,7 @@
                         const activosSub = sub.items.filter(i => i.cantidad > 0);
                         if (activosSub.length > 0) {
                             bloqueTieneActivos = true;
-                            textoBloque += `   _📦 ${sub.name || sub.nombre}_\n`;
+                            textoBloque += `   _📦 ${sub.nombre}_\n`;
                             activosSub.forEach(item => {
                                 textoBloque += `     - ${item.nombre}: *${item.cantidad}*\n`;
                             });
