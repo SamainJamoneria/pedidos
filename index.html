@@ -26,8 +26,9 @@
         .card-bg {
             background-color: #242E4B;
         }
-        .card-border {
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Borde dorado fino corporativo para los bloques */
+        .card-border-gold {
+            border: 1px solid rgba(245, 158, 11, 0.35);
         }
         /* Ocultar flechas de inputs numéricos */
         input[type=number]::-webkit-inner-spin-button, 
@@ -43,7 +44,7 @@
 <body class="min-h-screen pb-28">
 
     <!-- Header Fijo Superior -->
-    <header class="sticky top-0 z-30 card-bg card-border shadow-md px-4 py-3 flex items-center justify-between">
+    <header class="sticky top-0 z-30 card-bg card-border-gold shadow-md px-4 py-3 flex items-center justify-between">
         <div class="flex items-center space-x-3">
             <img src="icono.png" alt="Samain Icono" class="w-10 h-10 rounded-xl object-cover shadow-inner border border-amber-400/30">
             <div>
@@ -68,7 +69,7 @@
     </main>
 
     <!-- Barra de Acciones Globales (Inferior Fija) -->
-    <nav class="fixed bottom-0 left-0 right-0 card-bg card-border p-3 shadow-2xl z-40 backdrop-blur-md bg-opacity-95">
+    <nav class="fixed bottom-0 left-0 right-0 card-bg card-border-gold p-3 shadow-2xl z-40 backdrop-blur-md bg-opacity-95">
         <div class="max-w-xl mx-auto grid grid-cols-2 gap-3">
             <button onclick="exportarTodoPDF()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-sm transition active:scale-95">
                 <i class="fa-solid fa-file-pdf text-base"></i>
@@ -83,9 +84,9 @@
 
     <!-- Modales Genéricos -->
     <div id="modal-articulo" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="card-bg card-border w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
+        <div class="card-bg card-border-gold w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
             <h3 id="modal-articulo-titulo" class="text-base font-bold text-white">Añadir Artículo</h3>
-            <input type="text" id="input-nombre-articulo" placeholder="Nombre del artículo..." class="w-full bg-[#1B2238] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500">
+            <input type="text" id="input-nombre-articulo" placeholder="Nombre del artículo..." class="w-full bg-[#1B2238] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400">
             <div class="flex space-x-3 pt-2">
                 <button onclick="cerrarModalArticulo()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 rounded-xl text-sm transition">Cancelar</button>
                 <button onclick="guardarArticulo()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-sm transition">Guardar</button>
@@ -94,9 +95,9 @@
     </div>
 
     <div id="modal-bloque" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="card-bg card-border w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
+        <div class="card-bg card-border-gold w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
             <h3 id="modal-bloque-titulo" class="text-base font-bold text-white">Nuevo Bloque</h3>
-            <input type="text" id="input-nombre-bloque" placeholder="Nombre de la categoría..." class="w-full bg-[#1B2238] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500">
+            <input type="text" id="input-nombre-bloque" placeholder="Nombre de la categoría..." class="w-full bg-[#1B2238] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400">
             <div class="flex space-x-3 pt-2">
                 <button onclick="cerrarModalBloque()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 rounded-xl text-sm transition">Cancelar</button>
                 <button onclick="guardarBloque()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-sm transition">Guardar</button>
@@ -408,7 +409,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v5');
+            const savedState = localStorage.getItem('samain_pedidos_state_v6');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -418,7 +419,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v5', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v6', JSON.stringify(state));
             render();
         }
 
@@ -448,12 +449,12 @@
                 }
                 
                 const card = document.createElement('div');
-                card.className = 'card-bg card-border rounded-2xl shadow-lg overflow-hidden transition-all duration-200';
+                card.className = 'card-bg card-border-gold rounded-2xl shadow-lg overflow-hidden transition-all duration-200';
                 
                 let html = `
-                    <div class="px-4 py-3.5 bg-[#2A3655]/60 flex items-center justify-between border-b border-white/5">
+                    <div class="px-4 py-3.5 bg-[#2A3655]/60 flex items-center justify-between border-b border-amber-500/20">
                         <div class="flex items-center space-x-2 flex-1 min-w-0 mr-2">
-                            <button onclick="toggleColapsar('${bloque.id}')" class="text-indigo-400 hover:text-indigo-300 p-1">
+                            <button onclick="toggleColapsar('${bloque.id}')" class="text-amber-400 hover:text-amber-300 p-1">
                                 <i class="fa-solid ${bloque.colapsado ? 'fa-chevron-right' : 'fa-chevron-down'} text-xs"></i>
                             </button>
                             <span class="font-black text-white text-base uppercase tracking-wider truncate">${bloque.nombre}</span>
