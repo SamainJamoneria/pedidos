@@ -45,7 +45,6 @@
     <!-- Header Fijo Superior -->
     <header class="sticky top-0 z-30 card-bg card-border shadow-md px-4 py-3 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-            <!-- Imagen icono.png en la cabecera -->
             <img src="icono.png" alt="Samain Icono" class="w-10 h-10 rounded-xl object-cover shadow-inner border border-amber-400/30">
             <div>
                 <h1 class="font-bold text-base leading-tight text-white tracking-wide">Samain</h1>
@@ -83,7 +82,6 @@
     </nav>
 
     <!-- Modales Genéricos -->
-    <!-- Modal Artículo -->
     <div id="modal-articulo" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="card-bg card-border w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
             <h3 id="modal-articulo-titulo" class="text-base font-bold text-white">Añadir Artículo</h3>
@@ -95,7 +93,6 @@
         </div>
     </div>
 
-    <!-- Modal Bloque -->
     <div id="modal-bloque" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="card-bg card-border w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
             <h3 id="modal-bloque-titulo" class="text-base font-bold text-white">Nuevo Bloque</h3>
@@ -248,7 +245,28 @@
                 ] 
             },
             { id: "bloque-5", nombre: "Fruta", colapsado: false, items: [ {id: 9, nombre: "Tomates", cantidad: 0}, {id: 10, nombre: "Uva blanca", cantidad: 0}, {id: 23, nombre: "Uva roja", cantidad: 0} ] },
-            { id: "bloque-6", nombre: "Helados", colapsado: false, items: [ {id: 11, nombre: "Helado Chocolate", cantidad: 0}, {id: 12, nombre: "Helado Vainilla", cantidad: 0} ] },
+            { 
+                id: "bloque-6", 
+                nombre: "Helados", 
+                colapsado: false, 
+                items: [ 
+                    {id: 601, nombre: "Calippo Fresa", cantidad: 0},
+                    {id: 602, nombre: "Calippo Lima", cantidad: 0},
+                    {id: 603, nombre: "Cornetto Clásico", cantidad: 0},
+                    {id: 604, nombre: "Cornetto Go", cantidad: 0},
+                    {id: 605, nombre: "Cornetto Pistacho", cantidad: 0},
+                    {id: 606, nombre: "Frigo Chuches", cantidad: 0},
+                    {id: 607, nombre: "Frigurón", cantidad: 0},
+                    {id: 608, nombre: "Frigopie", cantidad: 0},
+                    {id: 609, nombre: "Magnum Caramel&Nuts", cantidad: 0},
+                    {id: 610, nombre: "Magnum Double Chocolate", cantidad: 0},
+                    {id: 611, nombre: "Magnum White Chocolate", cantidad: 0},
+                    {id: 612, nombre: "Sandwich Dinosaurus", cantidad: 0},
+                    {id: 613, nombre: "Sandwich Filipinos", cantidad: 0},
+                    {id: 614, nombre: "Solero", cantidad: 0},
+                    {id: 615, nombre: "Twister", cantidad: 0}
+                ] 
+            },
             { id: "bloque-7", nombre: "Limpieza", colapsado: false, items: [ {id: 13, nombre: "Lejía industrial", cantidad: 0}, {id: 14, nombre: "Papel higiénico", cantidad: 0} ] },
             { id: "bloque-8", nombre: "Café", colapsado: false, items: [ {id: 15, nombre: "Café en grano 1kg", cantidad: 0} ] },
             {
@@ -272,53 +290,70 @@
                             { id: 912, nombre: "Bacardi limón", cantidad: 0 },
                             { id: 913, nombre: "Barceló", cantidad: 0 },
                             { id: 914, nombre: "Brugal", cantidad: 0 },
-                            { id: 915, nombre: "Malibú", cantidad: 0 }
+                            { id: 915, nombre: "Cacique", cantidad: 0 },
+                            { id: 916, nombre: "Havana Club", cantidad: 0 },
+                            { id: 917, nombre: "Malibú", cantidad: 0 }
                         ]
                     },
                     {
                         id: "sub-9-3",
                         nombre: "ALCOHOL - GINEBRA",
                         items: [
-                            { id: 921, nombre: "Nordés", cantidad: 0 },
-                            { id: 922, nombre: "Puerto de Indias", cantidad: 0 },
-                            { id: 923, nombre: "Seagrams", cantidad: 0 }
+                            { id: 921, nombre: "Beefeater", cantidad: 0 },
+                            { id: 922, nombre: "Bombay Dry", cantidad: 0 },
+                            { id: 923, nombre: "Bombay Sapphire", cantidad: 0 },
+                            { id: 924, nombre: "Hendrick's", cantidad: 0 },
+                            { id: 925, nombre: "Larios", cantidad: 0 },
+                            { id: 926, nombre: "Nordés", cantidad: 0 },
+                            { id: 927, nombre: "Puerto de Indias", cantidad: 0 },
+                            { id: 928, nombre: "Puerto de Indias Classic", cantidad: 0 },
+                            { id: 929, nombre: "Seagram's Gin", cantidad: 0 },
+                            { id: 930, nombre: "Tanqueray", cantidad: 0 }
                         ]
                     },
                     {
                         id: "sub-9-4",
                         nombre: "ALCOHOL - VODKA",
                         items: [
-                            { id: 931, nombre: "Absolut", cantidad: 0 },
-                            { id: 932, nombre: "Grey Goose", cantidad: 0 }
+                            { id: 941, nombre: "Absolut", cantidad: 0 },
+                            { id: 942, nombre: "Grey Goose", cantidad: 0 }
                         ]
                     },
                     {
                         id: "sub-9-5",
                         nombre: "ALCOHOL - WHISKY",
                         items: [
-                            { id: 941, nombre: "Jameson", cantidad: 0 },
-                            { id: 942, nombre: "JB", cantidad: 0 },
-                            { id: 943, nombre: "Johnnie Rojo", cantidad: 0 },
-                            { id: 944, nombre: "Macallan", cantidad: 0 }
+                            { id: 951, nombre: "100 Pipers", cantidad: 0 },
+                            { id: 952, nombre: "Ballantine's", cantidad: 0 },
+                            { id: 953, nombre: "Four Roses", cantidad: 0 },
+                            { id: 954, nombre: "Jack Daniel's", cantidad: 0 },
+                            { id: 955, nombre: "Jameson", cantidad: 0 },
+                            { id: 956, nombre: "JB", cantidad: 0 },
+                            { id: 957, nombre: "Jim Beam", cantidad: 0 },
+                            { id: 958, nombre: "Johnnie Negro", cantidad: 0 },
+                            { id: 959, nombre: "Johnnie Rojo", cantidad: 0 },
+                            { id: 960, nombre: "Macallan", cantidad: 0 }
                         ]
                     },
                     {
                         id: "sub-9-6",
-                        nombre: "ALCOHOL - VERMOUTH",
+                        nombre: "ALCOHOL - VERMÚ",
                         items: [
-                            { id: 951, nombre: "Petroni blanco", cantidad: 0 },
-                            { id: 952, nombre: "Petroni rojo", cantidad: 0 }
+                            { id: 971, nombre: "Martini Bianco", cantidad: 0 },
+                            { id: 972, nombre: "Martini Rosso", cantidad: 0 },
+                            { id: 973, nombre: "Petroni blanco", cantidad: 0 },
+                            { id: 974, nombre: "Petroni rojo", cantidad: 0 }
                         ]
                     },
                     {
                         id: "sub-9-7",
                         nombre: "ALCOHOL - LICORES",
                         items: [
-                            { id: 961, nombre: "Crema de orujo", cantidad: 0 },
-                            { id: 962, nombre: "Licor café", cantidad: 0 },
-                            { id: 963, nombre: "Licor de hierbas", cantidad: 0 },
-                            { id: 964, nombre: "Tequila", cantidad: 0 },
-                            { id: 965, nombre: "Thunder", cantidad: 0 }
+                            { id: 981, nombre: "Crema de orujo", cantidad: 0 },
+                            { id: 982, nombre: "Licor café", cantidad: 0 },
+                            { id: 983, nombre: "Licor de hierbas", cantidad: 0 },
+                            { id: 984, nombre: "Tequila", cantidad: 0 },
+                            { id: 985, nombre: "Thunder", cantidad: 0 }
                         ]
                     }
                 ]
@@ -327,7 +362,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v3');
+            const savedState = localStorage.getItem('samain_pedidos_state_v4');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -337,7 +372,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v3', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v4', JSON.stringify(state));
             render();
         }
 
