@@ -251,8 +251,13 @@
                 nombre: "Fruta", 
                 colapsado: true, 
                 items: [ 
+                    {id: 501, nombre: "Albahaca", cantidad: 0},
+                    {id: 502, nombre: "Limones", cantidad: 0},
+                    {id: 503, nombre: "Naranjas", cantidad: 0},
                     {id: 9, nombre: "Tomates", cantidad: 0}, 
                     {id: 901, nombre: "Tomate cherry", cantidad: 0}, 
+                    {id: 504, nombre: "Tomate pera", cantidad: 0},
+                    {id: 505, nombre: "Tomate rosa", cantidad: 0},
                     {id: 10, nombre: "Uva blanca", cantidad: 0}, 
                     {id: 23, nombre: "Uva roja", cantidad: 0} 
                 ] 
@@ -297,6 +302,7 @@
                             { id: 806, nombre: "ColaCao", cantidad: 0 },
                             { id: 807, nombre: "Desca de lata", cantidad: 0 },
                             { id: 808, nombre: "Desca de sobre", cantidad: 0 },
+                            { id: 810, nombre: "Galletas", cantidad: 0 },
                             { id: 809, nombre: "Sacarina", cantidad: 0 }
                         ]
                     },
@@ -420,7 +426,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v8');
+            const savedState = localStorage.getItem('samain_pedidos_state_v9');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -430,7 +436,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v8', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v9', JSON.stringify(state));
             render();
         }
 
