@@ -226,7 +226,6 @@
                     {id: 28, nombre: "Jamón Cocido", cantidad: 0},
                     {id: 20, nombre: "Jamón Serrano", cantidad: 0}, 
                     {id: 21, nombre: "Lomo", cantidad: 0},
-                    {id: 29, nombre: "Queso de barra", cantidad: 0},
                     {id: 22, nombre: "Salchichón", cantidad: 0}
                 ] 
             },
@@ -241,12 +240,23 @@
                     {id: 704, nombre: "Gouda Trufado", cantidad: 0},
                     {id: 705, nombre: "Parmigiano Reggiano", cantidad: 0},
                     {id: 706, nombre: "Paulus", cantidad: 0},
+                    {id: 29, nombre: "Queso de barra", cantidad: 0},
                     {id: 707, nombre: "Queso Azul de Pría", cantidad: 0},
                     {id: 708, nombre: "Rulo de Cabra", cantidad: 0},
                     {id: 709, nombre: "Stilton", cantidad: 0}
                 ] 
             },
-            { id: "bloque-5", nombre: "Fruta", colapsado: true, items: [ {id: 9, nombre: "Tomates", cantidad: 0}, {id: 10, nombre: "Uva blanca", cantidad: 0}, {id: 23, nombre: "Uva roja", cantidad: 0} ] },
+            { 
+                id: "bloque-5", 
+                nombre: "Fruta", 
+                colapsado: true, 
+                items: [ 
+                    {id: 9, nombre: "Tomates", cantidad: 0}, 
+                    {id: 901, nombre: "Tomate cherry", cantidad: 0}, 
+                    {id: 10, nombre: "Uva blanca", cantidad: 0}, 
+                    {id: 23, nombre: "Uva roja", cantidad: 0} 
+                ] 
+            },
             { 
                 id: "bloque-6", 
                 nombre: "Helados", 
@@ -410,7 +420,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v7');
+            const savedState = localStorage.getItem('samain_pedidos_state_v8');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -420,7 +430,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v7', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v8', JSON.stringify(state));
             render();
         }
 
