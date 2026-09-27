@@ -340,8 +340,9 @@
                         id: "sub-9-1",
                         nombre: "VINO",
                         items: [
-                            { id: 901, nombre: "Vino Rías Baixas Albariño", cantidad: 0 },
-                            { id: 902, nombre: "Vino Tinto Rioja Crianza", cantidad: 0 }
+                            { id: 901, nombre: "Rioja: Ramón Bilbao", cantidad: 0 },
+                            { id: 902, nombre: "Godello: Terras do Cigarrón", cantidad: 0 },
+                            { id: 903, nombre: "Ribera del Duero: Tarsus", cantidad: 0 }
                         ]
                     },
                     {
@@ -424,7 +425,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v10');
+            const savedState = localStorage.getItem('samain_pedidos_state_v11');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -434,7 +435,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v10', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v11', JSON.stringify(state));
             render();
         }
 
