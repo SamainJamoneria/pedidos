@@ -254,7 +254,6 @@
                     {id: 501, nombre: "Albahaca", cantidad: 0},
                     {id: 502, nombre: "Limones", cantidad: 0},
                     {id: 503, nombre: "Naranjas", cantidad: 0},
-                    {id: 9, nombre: "Tomates", cantidad: 0}, 
                     {id: 901, nombre: "Tomate cherry", cantidad: 0}, 
                     {id: 504, nombre: "Tomate pera", cantidad: 0},
                     {id: 505, nombre: "Tomate rosa", cantidad: 0},
@@ -297,7 +296,6 @@
                             { id: 801, nombre: "Azúcar blanco", cantidad: 0 },
                             { id: 802, nombre: "Azúcar moreno", cantidad: 0 },
                             { id: 803, nombre: "Café de lata", cantidad: 0 },
-                            { id: 804, nombre: "Café en grano 1kg", cantidad: 0 },
                             { id: 805, nombre: "Chocolate", cantidad: 0 },
                             { id: 806, nombre: "ColaCao", cantidad: 0 },
                             { id: 807, nombre: "Desca de lata", cantidad: 0 },
@@ -426,7 +424,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v9');
+            const savedState = localStorage.getItem('samain_pedidos_state_v10');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -436,7 +434,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v9', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v10', JSON.stringify(state));
             render();
         }
 
