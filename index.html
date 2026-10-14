@@ -58,8 +58,9 @@
                 <i class="fa-solid fa-plus text-xs"></i>
                 <span>Bloque</span>
             </button>
-            <button onclick="reiniciarCantidades()" class="text-gray-400 hover:text-red-400 p-2.5 rounded-xl transition" title="Reiniciar contadores">
-                <i class="fa-solid fa-rotate-right text-base"></i>
+            <!-- Botón de reiniciar destacado en rojo con icono blanco -->
+            <button onclick="reiniciarCantidades()" class="bg-red-600 hover:bg-red-500 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center active:scale-95" title="Reiniciar todas las cantidades a 0">
+                <i class="fa-solid fa-rotate-right text-base text-white"></i>
             </button>
         </div>
     </header>
@@ -147,6 +148,7 @@
                         nombre: "Aguas",
                         items: [
                             { id: 113, nombre: "Agua", cantidad: 0 },
+                            { id: 119, nombre: "Agua de Plástico", cantidad: 0 },
                             { id: 114, nombre: "Magma Aluminio con gas", cantidad: 0 }
                         ]
                     },
@@ -402,8 +404,6 @@
                         id: "sub-9-6",
                         nombre: "ALCOHOL - VERMÚ",
                         items: [
-                            { id: 971, nombre: "Martini Bianco", cantidad: 0 },
-                            { id: 972, nombre: "Martini Rosso", cantidad: 0 },
                             { id: 973, nombre: "Petroni blanco", cantidad: 0 },
                             { id: 974, nombre: "Petroni rojo", cantidad: 0 }
                         ]
@@ -425,7 +425,7 @@
 
         let state;
         try {
-            const savedState = localStorage.getItem('samain_pedidos_state_v11');
+            const savedState = localStorage.getItem('samain_pedidos_state_v12');
             state = savedState ? JSON.parse(savedState) : datosIniciales;
         } catch (e) {
             state = datosIniciales;
@@ -435,7 +435,7 @@
         let editandoArticuloContext = null; 
 
         function guardarEstado() {
-            localStorage.setItem('samain_pedidos_state_v11', JSON.stringify(state));
+            localStorage.setItem('samain_pedidos_state_v12', JSON.stringify(state));
             render();
         }
 
@@ -471,17 +471,17 @@
                     <div class="px-4 py-3.5 bg-[#2A3655]/60 flex items-center justify-between border-b border-amber-500/20">
                         <div class="flex items-center space-x-2.5 flex-1 min-w-0 mr-2">
                             <button onclick="toggleColapsar('${bloque.id}')" class="text-amber-400 hover:text-amber-300 p-1">
-                                <i class="fa-solid ${bloque.colapsado ? 'fa-chevron-right' : 'fa-chevron-down'} text-xs"></i>
+                                <i class="fa-solid ${bloque.colapsado ? 'fa-chevron-right' : 'fa-chevron-down'} text-sm"></i>
                             </button>
                             <span class="font-black text-white text-sm md:text-base uppercase tracking-wider truncate">${bloque.nombre}</span>
                             ${totalItemsActivos > 0 ? `<span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">${totalItemsActivos}</span>` : ''}
                         </div>
-                        <div class="flex items-center space-x-1 text-gray-300">
-                            ${!bloque.subloques ? `<button onclick="abrirModalNuevoArticulo('${bloque.id}', null)" class="p-1.5 hover:text-amber-300 rounded-lg transition" title="Añadir artículo"><i class="fa-solid fa-plus text-xs"></i></button>` : ''}
-                            <button onclick="abrirModalEditarBloque('${bloque.id}')" class="p-1.5 hover:text-indigo-300 rounded-lg transition" title="Editar bloque"><i class="fa-solid fa-pen text-xs"></i></button>
-                            <button onclick="exportarBloquePDF('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Exportar Bloque a PDF"><i class="fa-solid fa-file-pdf text-xs"></i></button>
-                            <button onclick="enviarBloqueWhatsApp('${bloque.id}')" class="p-1.5 hover:text-emerald-400 rounded-lg transition" title="Enviar Bloque por WhatsApp"><i class="fa-brands fa-whatsapp text-sm"></i></button>
-                            <button onclick="borrarBloque('${bloque.id}')" class="p-1.5 hover:text-red-400 rounded-lg transition" title="Borrar bloque"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                        <div class="flex items-center space-x-1.5 text-gray-300">
+                            ${!bloque.subloques ? `<button onclick="abrirModalNuevoArticulo('${bloque.id}', null)" class="p-2 hover:text-amber-300 rounded-lg transition" title="Añadir artículo"><i class="fa-solid fa-plus text-sm"></i></button>` : ''}
+                            <button onclick="abrirModalEditarBloque('${bloque.id}')" class="p-2 hover:text-indigo-300 rounded-lg transition" title="Editar bloque"><i class="fa-solid fa-pen text-sm"></i></button>
+                            <button onclick="exportarBloquePDF('${bloque.id}')" class="p-2 hover:text-red-400 rounded-lg transition" title="Exportar Bloque a PDF"><i class="fa-solid fa-file-pdf text-sm"></i></button>
+                            <button onclick="enviarBloqueWhatsApp('${bloque.id}')" class="p-2 hover:text-emerald-400 rounded-lg transition" title="Enviar Bloque por WhatsApp"><i class="fa-brands fa-whatsapp text-base"></i></button>
+                            <button onclick="borrarBloque('${bloque.id}')" class="p-2 hover:text-red-400 rounded-lg transition" title="Borrar bloque"><i class="fa-solid fa-trash-can text-sm"></i></button>
                         </div>
                     </div>
                 `;
@@ -495,8 +495,8 @@
                                 <div class="bg-[#1B2238]/40 border border-white/5 rounded-xl p-2.5 space-y-2">
                                     <div class="flex items-center justify-between border-b border-white/5 pb-1.5">
                                         <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">${subloque.nombre}</span>
-                                        <button onclick="abrirModalNuevoArticulo('${bloque.id}', '${subloque.id}')" class="text-gray-400 hover:text-amber-300 text-xs px-1.5 py-0.5 rounded transition" title="Añadir a ${subloque.nombre}">
-                                            <i class="fa-solid fa-plus text-[10px]"></i> Añadir
+                                        <button onclick="abrirModalNuevoArticulo('${bloque.id}', '${subloque.id}')" class="text-gray-400 hover:text-amber-300 text-xs px-2 py-1 rounded transition flex items-center space-x-1" title="Añadir a ${subloque.nombre}">
+                                            <i class="fa-solid fa-plus text-xs"></i> <span>Añadir</span>
                                         </button>
                                     </div>
                                     <div class="space-y-2">
